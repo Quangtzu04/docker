@@ -1,0 +1,21 @@
+version: "3.8" 
+services: 
+    app: 
+        container_name: ecommerce
+        build: ./EcommerceService
+        ports:
+            - "56618:56618" 
+        links:
+            - db
+
+    db:
+        image: "mcr.microsoft.com/mssql/server"
+        environment:
+            SA_PASSWORD: "QuangBui@123"
+            ACCEPT_EULA: "Y"
+
+    client:
+        container_name: client
+        build: ./DEcommerce
+        ports:
+            - "4200:4200"
